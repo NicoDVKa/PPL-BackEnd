@@ -1,5 +1,5 @@
 import express from 'express';
-
+import cors from 'cors'
 //Exporto las rutas
 import userRoutes from './routes/User.Routes.js';
 import userTablaRoutes from './routes/UserTabla.Routes.js';
@@ -11,13 +11,8 @@ import fechaRoutes from './routes/Fecha.Routes.js';
 
 //Configuracion del CORS
 const app = express();
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-    next();
-});
+
+app.use(cors());
 
 //Middleware
  app.use(express.json());

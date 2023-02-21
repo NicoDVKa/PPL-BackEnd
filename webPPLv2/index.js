@@ -1,7 +1,8 @@
 import app from './app.js';
 import sequelize from './database/db.js';
 import { PORT } from './config.js';
-
+import { Server  } from 'socket.io';
+import http from 'http';
 
 import  './database/models/User.js';
 import  './database/models/Competicion.js';
@@ -11,16 +12,34 @@ import './database/models/Tabla.js';
 import  './database/models/UserTabla.js';
 import  './database/models/Fecha.js';
 
+
 //Setting
 const port = PORT;
 
-
-app.listen(port, () => {
-    console.log(`La app esta escuchando en el puerto: ${port}`);
-  
-    sequelize.sync({alter:true}).then( () => {
-      console.log("Nos hemos conectado a la base de datos");
-    }).catch(error =>{
-       console.log("Se ha producido un error", error);
-    })
+const httpServer = http.createServer(app);
+const io =  new Server(httpServer,{
+  cors: {
+    origin: "*",
+  }
 });
+
+io.on('connection', (socket) => {
+  console.log('A user connected');
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
+  });
+  socket.on('update partido', (msg) => {
+    console.log('message: ' + msg);
+    io.emit('update partido', msg);
+  });
+});
+
+httpServer.listen(port, function () {
+  sequelize.sync({alter:true}).then( () => {
+    console.log("Nos hemos conectado a la base de datos");
+  }).catch(error =>{
+    console.log("Se ha producido un error", error);
+  })
+  console.log(`Servidor corriendo en http://localhost:${port}`);
+});
+
