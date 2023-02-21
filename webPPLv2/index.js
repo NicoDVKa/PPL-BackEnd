@@ -1,5 +1,7 @@
 import app from './app.js';
 import sequelize from './database/db.js';
+import { PORT } from './config.js';
+
 
 import  './database/models/User.js';
 import  './database/models/Competicion.js';
@@ -10,7 +12,7 @@ import  './database/models/UserTabla.js';
 import  './database/models/Fecha.js';
 
 //Setting
-const port = process.env.PORT || 3000;
+const port = PORT;
 
 
 app.listen(port, () => {
