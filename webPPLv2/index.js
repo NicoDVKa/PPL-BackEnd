@@ -2,6 +2,7 @@ import app from './app.js';
 import sequelize from './database/db.js';
 import { Server  } from 'socket.io';
 import http from 'http';
+import { PORT } from './config.js';
 
 import  './database/models/User.js';
 import  './database/models/Competicion.js';
@@ -13,7 +14,7 @@ import  './database/models/Fecha.js';
 
 
 //Setting
-const port = process.env.PORT;
+const port = PORT;
 
 const httpServer = http.createServer(app);
 const io =  new Server(httpServer,{
