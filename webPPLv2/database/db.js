@@ -1,5 +1,4 @@
 import {Sequelize} from 'sequelize';
-import {DB_HOST, DB_NAME, DB_PASS,DB_PORT,DB_USER} from'../config.js';
 
 
 const sequelize = new Sequelize(`postgres://
