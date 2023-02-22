@@ -6,23 +6,7 @@ import User from './User.js';
 class UserTabla extends Model{}
 
 UserTabla.init({ 
-    userId: {
-        type: DataTypes.INTEGER,
-        primaryKey : true,
-        references: {
-          model: User, 
-          key: 'id'
-        }
-      },
-    tablaId: {
-        type: DataTypes.INTEGER,
-        primaryKey : true,
-        references: {
-          model: Tabla,
-          key: 'id'
-        }
-    },
-    puntos:{
+  puntos:{
     type: DataTypes.INTEGER,
     allowNull: false,
     DefaultValue : 0
@@ -37,10 +21,16 @@ UserTabla.init({
     allowNull: false,
     DefaultValue : 0
   }
-
 },{
     sequelize,
     timestamps : false
 });
+
+User.belongsToMany(Tabla, { through: UserTabla });
+Tabla.belongsToMany(User, { through: UserTabla });
+User.hasMany(UserTabla);
+UserTabla.belongsTo(User);
+Tabla.hasMany(UserTabla);
+UserTabla.belongsTo(Tabla);
 
 export default UserTabla;

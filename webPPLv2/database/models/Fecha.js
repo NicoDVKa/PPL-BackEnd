@@ -11,13 +11,6 @@ Fecha.init({
         primaryKey: true,
         autoIncrement:true 
     },
-    competicionId : {
-        type : DataTypes.INTEGER,
-        references :{
-             model : Competicion,
-             key : 'id',
-        }
-    },
     name : {
         type: DataTypes.STRING,
     }
@@ -27,6 +20,9 @@ Fecha.init({
     timestamps : false
 });
 
+Competicion.hasMany(Fecha,{
+    foreignKey: 'competicionId'
+})
 
 
 

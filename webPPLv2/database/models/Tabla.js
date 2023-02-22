@@ -10,20 +10,15 @@ Tabla.init({
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement:true 
-    },
-
-    competicionId : {
-        type : DataTypes.INTEGER,
-        references : {
-             model : Competicion,
-             key : 'id'
-        }
     }
-   
-   
 },{
     sequelize,
     timestamps : false
 });
+
+Competicion.hasOne(Tabla,{
+    foreignKey : 'competicionId'
+});
+
 
 export default Tabla;

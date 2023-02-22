@@ -3,12 +3,12 @@ import {getPartido,getPartidoByFecha,getPartidoById,createPartido,updatePartidoE
 
 const router =  Router();
 
-router.get('/partido/:fechaId',getPartido);
-router.post('/partido',createPartido);
-router.put('/partido/:id',updatePartido);
-router.put('/partidoFinal/:id',updatePartidoFinal);
-router.put('/partidoEnCurso/:id',updatePartidoEnCurso);
+router.get('/partido/:fechaId',getPartido); 
+router.post('/partido',createPartido);  
+router.put('/partido/:id',updatePartido); 
+router.put('/partidoFinal/:id',updatePartidoFinal); 
+router.put('/partidoEnCurso/:id',updatePartidoEnCurso); 
 router.get('/partido/:id',getPartidoById);
-router.get('/partidoFecha/:id',getPartidoByFecha);
+router.get('/partidoFecha',getPartidoByFecha);
 
 export default router;

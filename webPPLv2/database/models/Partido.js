@@ -2,6 +2,7 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from '../db.js';
 import Competicion from './Competicion.js';
 import Fecha from './Fecha.js'
+import Prediccion from './Prediccion.js';
 
 class Partido extends Model {}
 
@@ -36,21 +37,8 @@ Partido.init({
     },
     enCurso : {
         type : DataTypes.INTEGER,
-    },
-    competicionId : {
-        type : DataTypes.INTEGER,
-        references :{
-             model : Competicion,
-             key : 'id',
-        }
-    },
-    fechaId : {
-        type : DataTypes.INTEGER,
-        references :{
-             model : Fecha,
-             key : 'id',
-        }
     }
+   
   
     
 },{
@@ -59,6 +47,9 @@ Partido.init({
 });
 
 
+Fecha.hasMany(Partido,{
+    foreignKey : 'fechaId'
+})
 
 
 export default Partido;

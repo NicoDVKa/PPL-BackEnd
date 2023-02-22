@@ -30,27 +30,15 @@ Prediccion.init({
         //Estado = 1 Acierta resultado
         //Estado = 2 Acierta goles
         //Estado = 3 Erra
-    },
-    partidoId:{
-        type: DataTypes.INTEGER,
-        references : {
-            model : Partido,
-            key : 'id'
-        }
-    }
-    ,
-    userId : {
-        type: DataTypes.INTEGER,
-        references : {
-            model : User,
-            key : 'id'
-        }
     }
 },{
     sequelize,
     timestamps : false
 });
 
+Partido.hasMany(Prediccion,{
+    foreignKey: 'partidoId'
+})
 
 
 export default Prediccion;

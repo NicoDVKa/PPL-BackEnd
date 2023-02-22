@@ -286,7 +286,7 @@ export const updatePartidoEnCurso = async(req,res)=>{
 
 export const updatePartidoFinal = async(req,res)=>{
     
-    const {id} = req.params;
+    const {id} = req.params;  
 
     try{
             
@@ -324,29 +324,19 @@ export const getPartidoById = async (req,res) =>{
 };
 
 export const getPartidoByFecha = async (req,res) => {
-
     const {fecha}  = req.body;
-
     let dateFrom = fecha + "T00:00:00.000Z"
-
     let dateTo = fecha + "T23:59:59.000Z";        
-
     try{
-
         const partidoByFecha = await Partido.findAll({
-
             where : {
                 fechaHora : {
                    [Op.between]: [ dateFrom , dateTo]
                 }
             }
-
         });
-
         res.json(partidoByFecha);
-
     }catch(error){
-
         return res.status(500).json({message:error.message});    
     }
 } 
