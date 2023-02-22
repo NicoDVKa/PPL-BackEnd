@@ -1,6 +1,5 @@
 import app from './app.js';
 import sequelize from './database/db.js';
-import { PORT } from './config.js';
 import { Server  } from 'socket.io';
 import http from 'http';
 
@@ -14,7 +13,7 @@ import  './database/models/Fecha.js';
 
 
 //Setting
-const port = PORT;
+const port = process.env.PORT;
 
 const httpServer = http.createServer(app);
 const io =  new Server(httpServer,{
